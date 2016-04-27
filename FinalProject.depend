@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1461778188 source:/home/user/Dropbox/Data_Structures_Assignments/FinalProject/main.cpp
+	<iostream>
+	"Playlist.h"
+
+1461778049 /home/user/Dropbox/Data_Structures_Assignments/FinalProject/include/Playlist.h
+	<iostream>
+
+1461778422 source:/home/user/Dropbox/Data_Structures_Assignments/FinalProject/src/Playlist.cpp
+	"Playlist.h"
+
