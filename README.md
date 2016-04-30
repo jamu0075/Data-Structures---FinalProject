@@ -5,7 +5,7 @@ considered to be, based on the user's judgement.The user can also deltes songs, 
 print out all the songs in one playlist, all playlists, or specific information about a single song. The program works by creating an array of linked lists. Currently there
 is no order to the linked list(which acts like the playlist) but I plan on adding some kind of order based on user input.
 ###How	to	Run
-The best way to run the code is to simply open the code in CodeBLocks, then build and run the code.
+If you are looking at this before I am able to get a zipped folder of the files unfortunately it's sort of a pain to get this working. You will have to either create a new project with the main and Playlist class files or copy and paste the code from these files into a new project. 
 ###Dependencies
 N/A
 ###System	Requirements
