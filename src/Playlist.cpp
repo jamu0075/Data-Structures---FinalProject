@@ -15,11 +15,6 @@ Playlist::~Playlist()//deletes all nodes before exiting
 
 void Playlist::insertSong(string in_title, int in_genre, double in_length)//creates a new song and places it into the correct genre playlist
 {
-    if(in_genre > 10 || in_genre < 0)//checks to see if the user inputed a valid genre number
-    {
-        cout<<"Invalid genre."<<endl;
-        return;
-    }
     Song *in_song = new Song(in_title, in_genre, in_length);//creates a new song with the user inputs
     string genreTmp = genreConversion(in_genre);//converts the int genre into a string genre(ex. 0 becomes Alternative Rock)
     if(songList[in_genre] == NULL)//if there are no songs already in the playlist destination add this to the start of the linked list
@@ -253,4 +248,13 @@ void Playlist::clearPlaylists()//deletes all songs in the array
     }
 
 }
-
+bool Playlist::asciicheck(string input){
+    //if any character has an ascii value greater than that of 9 (57) it is either a letter or some type of punctuation
+    //less than 46 "." is unwanted as well
+    for(int i = 0; i < input.length(); i++){
+        if(input[i]>57||input[i]<46){
+            return false;
+        }
+    }
+    return true;
+}
