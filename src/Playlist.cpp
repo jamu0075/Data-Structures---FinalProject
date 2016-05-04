@@ -20,11 +20,10 @@ void Playlist::insertSong(string in_title, int in_genre, double in_length)//crea
         cout<<"Invalid genre."<<endl;
         return;
     }
-    Song *in_song = new Song(in_title, in_genre, in_length);//creates a new song with the user inputs
     string genreTmp = genreConversion(in_genre);//converts the int genre into a string genre(ex. 0 becomes Alternative Rock)
     if(songList[in_genre] == NULL)//if there are no songs already in the playlist destination add this to the start of the linked list
     {
-        songList[in_genre] = in_song;
+        songList[in_genre] = new Song(in_title, in_genre, in_length);
         cout<<in_title<<" added to the "<<genreTmp<<" playlist and is the first song."<<endl;
     }
     else//if there are already songs in the list, do this
@@ -34,7 +33,7 @@ void Playlist::insertSong(string in_title, int in_genre, double in_length)//crea
         {
             tmp = tmp->next;
         }
-        tmp->next = in_song;//the loop will exit when there is not a song next and add the new song to the end of the list
+        tmp->next = new Song(in_title, in_genre, in_length);//the loop will exit when there is not a song next and add the new song to the end of the list
         cout<<in_title<<" added to the "<<genreTmp<<" playlist."<<endl;
     }
 }
@@ -129,19 +128,15 @@ void Playlist::displayGenres()//prints out the genre options for the user
 
 void Playlist::deletePlaylist(int in_genre)
 {
-    Song *del = songList[in_genre];
+	Song *p = songList[in_genre];
     Song *head = songList[in_genre];
     string genre = genreConversion(in_genre);
-    while(del)
+    while(p)
     {
-        if(head)
-        {
-            head = head->next;
-        }
-        cout<<"Deleted: "<<del->title<<" from the "<<genre<<" playlist."<<endl;
-        delete del;
-        del = head;
+        cout<<"Deleted: "<<p->title<<" from the "<<genre<<" playlist."<<endl;
+		p = p->next;
     }
+	songList[in_genre] = NULL;
 }
 
 void Playlist::printPlaylist(int in_genre)//prints all songs in a playlist
@@ -173,16 +168,11 @@ void Playlist::findSong(string in_title)//searches the playlists for a song and 
         cout<<"Song Not Found"<<endl;
         return;
     }
-    Song *tmp = songList[genre];//creates a temp pointer that starts at the head of the playlist of the genre of the song you are looking for
-    while(tmp)
-    {
-        if(tmp->title == in_title)//if you find a match
-        {
-            string genreTmp = genreConversion(genre);//converts the genre from an int to a string
-            cout<<"Found "<<tmp->title<<" in the genre of "<<genreTmp<<" and is "<<tmp->time<<" minutes long."<<endl;
-        }
-        tmp = tmp->next;
-    }
+	else{
+		string genreTmp = genreConversion(genre);//converts the genre from an int to a string
+		cout<<"Found "<<in_title<<" in the genre of "<<genreTmp<<" and is "<<songList[genre]->time<<" minutes long."<<endl;
+	}
+		
 }
 
 double Playlist::playListDuration(int in_genre)//calculates the length of a playlist
@@ -249,8 +239,7 @@ void Playlist::clearPlaylists()//deletes all songs in the array
 {
     for(int i = 0; i < numPlaylist; i++)//runs through each playlist(index) in the array
     {
-        deletePlaylist(i);
+        delete songList[i];
     }
 
 }
-
