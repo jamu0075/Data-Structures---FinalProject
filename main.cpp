@@ -10,6 +10,8 @@ int main()
     string in_title;//used as an input title for adding/removing/ect.
     int in_genre;//used as an input genre of music
     double in_length;//the length of a song
+    string temp;
+    bool add;
 
     while(operation != 7)
     {
@@ -32,9 +34,28 @@ int main()
             getline(cin, in_title);
             newPlaylist.displayGenres();//displays the different genre choices
             cout<<"Enter the genre that best suites your song(enter the number): ";
-            cin>>in_genre;
+             //mljunker, changed to while loop to not allow user to input anything but a valid genre number
+             //also took out of insert song function
+            getline(cin,temp);
+            in_genre = atoi(temp.c_str());
+            while(in_genre > 10 || in_genre < 0)//checks to see if the user inputed a valid genre number
+            {
+                cout<<"Invalid genre."<<endl;
+                cout<<"Please input valid genre"<<endl;
+                getline(cin,temp);
+                in_genre = atoi(temp.c_str());
+            }
             cout<<"Enter and estimated song length in the format x.xx(0 if you have no clue): ";
-            cin>>in_length;
+            getline(cin,temp);
+            //returns false if any letter characters besides "."
+            add = newPlaylist.asciicheck(temp);
+            if(add){
+                in_length = stod(temp.c_str(),NULL);
+            }
+            else{
+                in_length = 0;
+                cout<<"That song length was invalid, adding as 0";
+            }
             cout<<endl;
             newPlaylist.insertSong(in_title, in_genre, in_length);//calls the insert song function
         }

@@ -38,6 +38,7 @@ class Playlist
         double playListDuration(int in_genre);
         string genreConversion(int in_genre);
         void clearPlaylists();
+        bool asciicheck(string input);
 
     private:
         static const int numPlaylist = 11;//number of elements in the array of genres
