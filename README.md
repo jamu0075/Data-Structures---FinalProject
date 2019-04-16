@@ -14,7 +14,7 @@ This code should run for any machine running CodeBlocks.
 This is a solo project.
 ### Contributors
 N/A
-###Open	issues/bugs
+### Open	issues/bugs
 I still have to implement more user safe guards(prevents the code from running if the user inputs an invalid value) There is
 also an issue with the delete destructor where sometimes add then imediately deleting a song causes a seg fault upon exiting program.
 I'm sure there are other issues similar to this that I have yet to weed out. Also, any recomendations on how to organize the play lists 
